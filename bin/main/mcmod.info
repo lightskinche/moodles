@@ -1,0 +1,16 @@
+[
+{
+  "modid": "deep",
+  "name": "Deep",
+  "description": "This mod adds stuff deeper in your world.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Lightskinche"],
+  "credits": "Lightskinche for doing pretty much everything. Well Valiec was there too, I guess.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
