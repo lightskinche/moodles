@@ -60,7 +60,7 @@ public class PainEffect extends MoodleEffect{
     @SideOnly(Side.CLIENT)
     @Override
     public boolean isBadEffect() {
-        return false;
+        return true;
     }
     @SideOnly(Side.CLIENT)
     public void renderInventoryEffect(int posX, int posY, PotionEffect effect, Minecraft mc) {

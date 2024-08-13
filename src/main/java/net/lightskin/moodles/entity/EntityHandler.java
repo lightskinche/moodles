@@ -116,7 +116,7 @@ public class EntityHandler {
 						 removeI = i;
 						 continue;
 					 }
-					 MoodlesEffects.renderInventoryEffect(posx + index * (i == 0 ? 1 : -1) * 15, (int)((float)posy + 40.0 * ((float)tmp.framesTillOld / 30.0)), tmp.effect, mc, tmp.moodle.icons);
+					 MoodlesEffects.renderInventoryEffect(posx + index * (i == 0 ? 1 : -1) * 19, (int)((float)posy + 40.0 * ((float)tmp.framesTillOld / 30.0)), tmp.effect, mc, tmp.moodle.icons);
 					 //player.addChatComponentMessage(new ChatComponentText("frames" + tmp.framesTillOld + " removal" + tmp.removal));
 					 if(tmp.framesTillOld > 0 && !tmp.removal)
 						 tmp.framesTillOld--;
