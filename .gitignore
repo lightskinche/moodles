@@ -1,5 +1,2 @@
 build/libs/
-.gradle/
-.gradle/gradle.log
-.gradle/buildOutputCleanup/
-.gradle/4.4.1/
+.gradle/**
