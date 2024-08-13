@@ -31,42 +31,14 @@ public class MoodlesEffects {
 	}
 	//todo: custom moodle 'look'
 	public static void renderInventoryEffect(int posX, int posY, PotionEffect effect, Minecraft mc, Map<Integer, ResourceLocation> icons, Map<Integer, String[]> moodleFields) {
-        int amp = Math.abs(effect.getAmplifier()); //use this to change texture depending on amp like project zomboid
-        //mc.renderEngine.bindTexture(new ResourceLocation(Moodles.MODID, "textures/effects/background" + amp + ".png"));
-        //GL11.glEnable(GL11.GL_BLEND);
-        //mc.currentScreen.drawTexturedModalRect(posX - 6, posY - 7, 0, 0, 110, 26);
-        MoodleEffect tmp = easyAccess.get(effect.getPotionID());
-        boolean stand = !tmp.standard, isBad = tmp.isBadEffect();
-        if(!stand)
-        	mc.renderEngine.bindTexture(icons.get(amp));
-        else
-        	mc.renderEngine.bindTexture(new ResourceLocation(Moodles.MODID, "textures/effects/" + (isBad ? "bad" : "good")  + amp + ".png"));
-        GL11.glEnable(GL11.GL_BLEND);
-        //get a 'tool tip' loc? temp change 2001 to 29 to test offset?
-    	GL11.glPushMatrix();
-        
-        // Translate to the position where you want to draw the texture
-        GL11.glTranslatef(posX, posY, 0);
-        
-        // Scale the texture down to fit 18x18
-        float scaleX = 18.0f / 256;
-        float scaleY = 18.0f / 256;
-        GL11.glScalef(scaleX, scaleY, 1.0f);
-    	mc.currentScreen.drawTexturedModalRect(12, 12, 0, 0, 256, 256);
-    	if(stand) {
-    		mc.renderEngine.bindTexture(icons.get(1)); //for standard ones, they just have one arraylist entry
-    		mc.currentScreen.drawTexturedModalRect(12, 12, 0, 0, 256, 256);
-    	}
-    	GL11.glPopMatrix(); //restore state
-    	mc.fontRenderer.drawString(moodleFields.get(amp)[0], posX + 24, posY + 6, 0xFFFFFF, true);
-    	mc.fontRenderer.drawString(moodleFields.get(amp)[1], posX + 24, posY + 18, 0xEEAAEE, true);
+        String[] fields = moodleFields.get(Math.abs(effect.getAmplifier()));
+        renderInventoryEffect(posX, posY, effect, mc, icons);
+    	mc.fontRenderer.drawString(fields[0], posX + 24, posY + 6, 0xFFFFFF, true);
+    	mc.fontRenderer.drawString(fields[1], posX + 24, posY + 18, 0xEEAAEE, true);
 	}
 	public static void renderInventoryEffect(int posX, int posY, PotionEffect effect, Minecraft mc, Map<Integer, ResourceLocation> icons) {
-        int amp = Math.abs(effect.getAmplifier()); //use this to change texture depending on amp like project zomboid
-        //mc.renderEngine.bindTexture(new ResourceLocation(Moodles.MODID, "textures/effects/background" + amp + ".png"));
-        //GL11.glEnable(GL11.GL_BLEND);
-        //mc.currentScreen.drawTexturedModalRect(posX - 6, posY - 7, 0, 0, 110, 26);
-        MoodleEffect tmp = easyAccess.get(effect.getPotionID());
+		int amp = Math.abs(effect.getAmplifier());
+		MoodleEffect tmp = easyAccess.get(effect.getPotionID());
         boolean stand = tmp.standard, isBad = tmp.isBadEffect();
         if(!stand)
         	mc.renderEngine.bindTexture(icons.get(amp));
@@ -83,12 +55,18 @@ public class MoodlesEffects {
         float scaleX = 18.0f / 256;
         float scaleY = 18.0f / 256;
         GL11.glScalef(scaleX, scaleY, 1.0f);
-    	drawTexturedModalRect(12, 8, 0, 0, 256, 256);
+        if(mc.currentScreen == null)
+        	drawTexturedModalRect(12, 8, 0, 0, 256, 256);
+        else
+        	mc.currentScreen.drawTexturedModalRect(12, 8, 0, 0, 256, 256);
     	if(stand) {
     		mc.renderEngine.bindTexture(icons.get(1)); //for standard ones, they just have one arraylist entry
-    		drawTexturedModalRect(12, 12, 0, 0, 256, 256);
+            if(mc.currentScreen == null)
+            	drawTexturedModalRect(12, 8, 0, 0, 256, 256);
+            else
+            	mc.currentScreen.drawTexturedModalRect(12, 8, 0, 0, 256, 256);
     	}
-    	GL11.glPopMatrix(); //restore state
+    	GL11.glPopMatrix(); //restore state	
 	}
 	public static void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height) {
 	    float f = 1.0F / 256.0F;
