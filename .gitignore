@@ -1,4 +1,4 @@
-#Please work
+#Test
+./gradle/gradle.log
+/eclipse/**
 build/**
-.gradle/**/
-eclipse/**
