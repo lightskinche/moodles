@@ -1,4 +1,4 @@
 #Please work
 build/**
-/.gradle/**/
+.gradle/**/
 eclipse/**
